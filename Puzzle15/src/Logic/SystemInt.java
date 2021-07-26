@@ -77,7 +77,7 @@ public class SystemInt {
             }
         }
 
-        System.out.println("" + spotA + "," + spotB);
+       // System.out.println("" + spotA + "," + spotB);
     }
 
     public int[][] copyParent(int[][] data) {

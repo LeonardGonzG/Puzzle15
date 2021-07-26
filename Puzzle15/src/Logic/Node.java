@@ -7,51 +7,45 @@ import java.util.List;
  *
  * @author leogonz.gut
  */
-public class Node<Type>{
+public class Node{
 
-    private Node<int[][]> _parent = null;
-    private List<Node<Type>> _children = new ArrayList<>();
+    private Node _parent = null;
+    private List<Node> _children = new ArrayList<>();
    
     private int[][] _data = new int [4][4];
     private Integer costhPath =-1;
    // private int maxSearchDepth = 0;
     
-    public Node(Type newData) {
+    public Node(int[][] newData) {
         _data = (int[][]) newData;
     }
 
     //Method addChildren
-    
-    
-    
-    
-    
-    /**
-     * @return the _parent
-     */
-    public Node<int[][]> getParent() {
-        return _parent;
+    public void addChildren(List<Node> nodes, int[][] finalNode){
+        for (Node node : nodes) {
+            addChild(node, finalNode);
+        }
     }
-
-    /**
-     * @param _parent the _parent to set
-     */
-    public void setParent(Node<int[][]> _parent) {
-        this._parent = _parent;
+   
+     public void addChild(Node newNode, int[][] finalNode){
+       newNode.setParent(this);
+       newNode.setCosthPath(calculateCostPath(newNode, finalNode));
+       
+        getChildren().add(newNode);
     }
-
-    /**
-     * @return the _children
-     */
-    public List<Node<Type>> getChildren() {
-        return _children;
-    }
-
-    /**
-     * @param _children the _children to set
-     */
-    public void setChildren(List<Node<Type>> _children) {
-        this._children = _children;
+    
+    private int calculateCostPath(Node newNode, int[][] finalNode){
+   
+        int costPath = 0;
+        for(int i=0; i<newNode._data.length; i++){
+            for(int j=0; j<newNode._data[0].length; j++){
+                if(newNode._data[i][j]==finalNode[i][j]){
+                costPath++;
+                }
+            }
+        }
+        
+        return costPath;
     }
 
     /**
@@ -80,6 +74,34 @@ public class Node<Type>{
      */
     public void setCosthPath(Integer costhPath) {
         this.costhPath = costhPath;
+    }
+
+    /**
+     * @return the _parent
+     */
+    public Node getParent() {
+        return _parent;
+    }
+
+    /**
+     * @param _parent the _parent to set
+     */
+    public void setParent(Node _parent) {
+        this._parent = _parent;
+    }
+
+    /**
+     * @return the _children
+     */
+    public List<Node> getChildren() {
+        return _children;
+    }
+
+    /**
+     * @param _children the _children to set
+     */
+    public void setChildren(List<Node> _children) {
+        this._children = _children;
     }
     
     
