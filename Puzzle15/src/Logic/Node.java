@@ -19,6 +19,11 @@ public class Node{
     public Node(int[][] newData) {
         _data = (int[][]) newData;
     }
+    
+    public Node(int[][] newData, int costhPath){
+        _data = (int[][]) newData;
+        this.costhPath = costhPath;
+    }
 
     //Method addChildren
     public void addChildren(List<Node> nodes, int[][] finalNode){
