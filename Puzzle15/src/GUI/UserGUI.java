@@ -7,7 +7,7 @@ package GUI;
 
 /**
  *
- * @author leogonz.gut
+ * @author David Clavijo
  */
 public class UserGUI extends java.awt.Frame {
 
