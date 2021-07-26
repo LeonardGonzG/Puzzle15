@@ -6,12 +6,12 @@ import java.util.ArrayList;
  *
  * @author leogonz.gut
  */
-public class SystemInt {
+public class Puzzle15 {
 
     int spotA = 0;
     int spotB = 0;
 
-    public SystemInt() {
+    public Puzzle15() {
     }
 
     public ArrayList<int[][]> childParent(Node parent) {

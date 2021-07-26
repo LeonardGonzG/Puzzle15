@@ -17,7 +17,7 @@ public class test {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SystemInt ok = new SystemInt();
+        Puzzle15 ok = new Puzzle15();
 
         int[][] testMatriz = {
             {1, 1, 1, 1},
