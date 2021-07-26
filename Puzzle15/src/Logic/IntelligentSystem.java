@@ -71,13 +71,10 @@ public class IntelligentSystem {
             for(int j = 0; j< finalState.length; j++){
                 
                 if(dataCurrent[i][j]!=finalState[i][j]){
-                    
                     return false;
                 }
             }
-        
         }
-        
         return true;
 
     }
