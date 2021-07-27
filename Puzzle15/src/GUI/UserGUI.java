@@ -5,31 +5,60 @@
  */
 package GUI;
 
+import java.awt.Button;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
  * @author David Clavijo
  */
 public class UserGUI extends java.awt.Frame {
-    
-    
-    
-    public boolean ShowMatriz(int[][] matriz){
-        
-        
-         btn12.setRolloverIcon (new ImageIcon("1.PNG"));
-        
-        return true;
-        
-    }
 
     /**
      * Creates new form UserGUI
      */
+    ArrayList<JButton> listBtn = new ArrayList<>();
+    int nextMatriz = 0;
+
+    ArrayList<int[][]> listOK = new ArrayList<>();
+
     public UserGUI() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(null);
+
+        this.setSize(590, 530);
+
+        int[][] test1 = {
+            {0, 15, 14, 13},
+            {12, 11, 10, 9},
+            {8, 7, 6, 5},
+            {4, 3, 2, 1}
+
+        };
+
+        int[][] test2 = {
+            {15, 0, 14, 13},
+            {12, 11, 10, 9},
+            {8, 7, 6, 5},
+            {4, 3, 2, 1}
+
+        };
+
+        int[][] test3 = {
+            {15, 11, 14, 13},
+            {12, 0, 10, 9},
+            {8, 7, 6, 5},
+            {4, 3, 2, 1}
+
+        };
+
+        listOK.add(test1);
+        listOK.add(test2);
+        listOK.add(test3);
     }
 
     /**
@@ -42,28 +71,30 @@ public class UserGUI extends java.awt.Frame {
 
         btn1 = new javax.swing.JButton();
         btn2 = new javax.swing.JButton();
-        btn3 = new javax.swing.JButton();
         btn4 = new javax.swing.JButton();
+        btn3 = new javax.swing.JButton();
         btn5 = new javax.swing.JButton();
         btn6 = new javax.swing.JButton();
         btn7 = new javax.swing.JButton();
-        btn8 = new javax.swing.JButton();
         btn9 = new javax.swing.JButton();
+        btn8 = new javax.swing.JButton();
         btn10 = new javax.swing.JButton();
-        btn11 = new javax.swing.JButton();
         btn12 = new javax.swing.JButton();
+        btn11 = new javax.swing.JButton();
         btn13 = new javax.swing.JButton();
         btn14 = new javax.swing.JButton();
         btn15 = new javax.swing.JButton();
         btn16 = new javax.swing.JButton();
         btnAlter = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         btnSolve = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Sig = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -71,7 +102,7 @@ public class UserGUI extends java.awt.Frame {
                 exitForm(evt);
             }
         });
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(null);
 
         btn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/1.PNG"))); // NOI18N
         btn1.setText("1");
@@ -81,7 +112,8 @@ public class UserGUI extends java.awt.Frame {
                 btn1ActionPerformed(evt);
             }
         });
-        add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 70, 60));
+        add(btn1);
+        btn1.setBounds(70, 200, 70, 60);
 
         btn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/2.PNG"))); // NOI18N
         btn2.setText("jButton1");
@@ -91,17 +123,8 @@ public class UserGUI extends java.awt.Frame {
                 btn2ActionPerformed(evt);
             }
         });
-        add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 70, 60));
-
-        btn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/3.PNG"))); // NOI18N
-        btn3.setText("jButton1");
-        btn3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn3ActionPerformed(evt);
-            }
-        });
-        add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 70, 60));
+        add(btn2);
+        btn2.setBounds(140, 200, 70, 60);
 
         btn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/4.PNG"))); // NOI18N
         btn4.setText("jButton1");
@@ -111,7 +134,19 @@ public class UserGUI extends java.awt.Frame {
                 btn4ActionPerformed(evt);
             }
         });
-        add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 70, 60));
+        add(btn4);
+        btn4.setBounds(280, 200, 70, 60);
+
+        btn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/3.PNG"))); // NOI18N
+        btn3.setText("jButton1");
+        btn3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
+        add(btn3);
+        btn3.setBounds(210, 200, 70, 60);
 
         btn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/5.PNG"))); // NOI18N
         btn5.setText("jButton1");
@@ -121,7 +156,8 @@ public class UserGUI extends java.awt.Frame {
                 btn5ActionPerformed(evt);
             }
         });
-        add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 70, 60));
+        add(btn5);
+        btn5.setBounds(70, 260, 70, 60);
 
         btn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/6.PNG"))); // NOI18N
         btn6.setText("jButton1");
@@ -131,7 +167,8 @@ public class UserGUI extends java.awt.Frame {
                 btn6ActionPerformed(evt);
             }
         });
-        add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 70, 60));
+        add(btn6);
+        btn6.setBounds(140, 260, 70, 60);
 
         btn7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/7.PNG"))); // NOI18N
         btn7.setText("jButton1");
@@ -141,17 +178,8 @@ public class UserGUI extends java.awt.Frame {
                 btn7ActionPerformed(evt);
             }
         });
-        add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 70, 60));
-
-        btn8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/8.PNG"))); // NOI18N
-        btn8.setText("jButton1");
-        btn8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn8ActionPerformed(evt);
-            }
-        });
-        add(btn8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 70, 60));
+        add(btn7);
+        btn7.setBounds(210, 260, 70, 60);
 
         btn9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/9.PNG"))); // NOI18N
         btn9.setText("jButton1");
@@ -161,7 +189,19 @@ public class UserGUI extends java.awt.Frame {
                 btn9ActionPerformed(evt);
             }
         });
-        add(btn9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 70, 60));
+        add(btn9);
+        btn9.setBounds(70, 320, 70, 60);
+
+        btn8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/8.PNG"))); // NOI18N
+        btn8.setText("jButton1");
+        btn8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn8ActionPerformed(evt);
+            }
+        });
+        add(btn8);
+        btn8.setBounds(280, 260, 70, 60);
 
         btn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/10.PNG"))); // NOI18N
         btn10.setText("jButton1");
@@ -171,17 +211,8 @@ public class UserGUI extends java.awt.Frame {
                 btn10ActionPerformed(evt);
             }
         });
-        add(btn10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 70, 60));
-
-        btn11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/11.PNG"))); // NOI18N
-        btn11.setText("jButton1");
-        btn11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn11ActionPerformed(evt);
-            }
-        });
-        add(btn11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 70, 60));
+        add(btn10);
+        btn10.setBounds(140, 320, 70, 60);
 
         btn12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/12.PNG"))); // NOI18N
         btn12.setText("jButton1");
@@ -191,7 +222,19 @@ public class UserGUI extends java.awt.Frame {
                 btn12ActionPerformed(evt);
             }
         });
-        add(btn12, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 70, 60));
+        add(btn12);
+        btn12.setBounds(280, 320, 70, 60);
+
+        btn11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/11.PNG"))); // NOI18N
+        btn11.setText("jButton1");
+        btn11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn11ActionPerformed(evt);
+            }
+        });
+        add(btn11);
+        btn11.setBounds(210, 320, 70, 60);
 
         btn13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/13.PNG"))); // NOI18N
         btn13.setText("jButton1");
@@ -201,7 +244,8 @@ public class UserGUI extends java.awt.Frame {
                 btn13ActionPerformed(evt);
             }
         });
-        add(btn13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 70, 60));
+        add(btn13);
+        btn13.setBounds(70, 380, 70, 60);
 
         btn14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/14.PNG"))); // NOI18N
         btn14.setText("jButton1");
@@ -211,7 +255,8 @@ public class UserGUI extends java.awt.Frame {
                 btn14ActionPerformed(evt);
             }
         });
-        add(btn14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 70, 60));
+        add(btn14);
+        btn14.setBounds(140, 380, 70, 60);
 
         btn15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/15.PNG"))); // NOI18N
         btn15.setText("jButton1");
@@ -221,7 +266,8 @@ public class UserGUI extends java.awt.Frame {
                 btn15ActionPerformed(evt);
             }
         });
-        add(btn15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 70, 60));
+        add(btn15);
+        btn15.setBounds(210, 380, 70, 60);
 
         btn16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/0.PNG"))); // NOI18N
         btn16.setText("jButton1");
@@ -231,15 +277,12 @@ public class UserGUI extends java.awt.Frame {
                 btn16ActionPerformed(evt);
             }
         });
-        add(btn16, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 70, 60));
+        add(btn16);
+        btn16.setBounds(280, 380, 70, 60);
 
         btnAlter.setText("ALTERNAR");
-        add(btnAlter, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 110, 60));
-
-        jLabel1.setBackground(new java.awt.Color(255, 204, 51));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/fr2.1.png"))); // NOI18N
-        jLabel1.setBorder(new javax.swing.border.MatteBorder(null));
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 320, 300));
+        add(btnAlter);
+        btnAlter.setBounds(400, 170, 110, 60);
 
         btnSolve.setText("RESOLVER");
         btnSolve.addActionListener(new java.awt.event.ActionListener() {
@@ -247,38 +290,134 @@ public class UserGUI extends java.awt.Frame {
                 btnSolveActionPerformed(evt);
             }
         });
-        add(btnSolve, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 110, 60));
+        add(btnSolve);
+        btnSolve.setBounds(400, 240, 110, 60);
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Leonardo Gonzalez");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
+        add(jLabel5);
+        jLabel5.setBounds(60, 110, 230, 22);
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("David Clavijo");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+        add(jLabel6);
+        jLabel6.setBounds(60, 130, 200, 22);
 
-        jLabel7.setText("Movements");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Información");
+        jLabel7.setToolTipText("");
+        add(jLabel7);
+        jLabel7.setBounds(400, 320, 110, 17);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, 150, 130));
+        add(jTextField1);
+        jTextField1.setBounds(390, 340, 150, 130);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/monitorias.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 190, 70));
+        add(jLabel4);
+        jLabel4.setBounds(350, 50, 190, 70);
+
+        jLabel1.setBackground(new java.awt.Color(255, 204, 51));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/fr2.1.png"))); // NOI18N
+        jLabel1.setBorder(new javax.swing.border.MatteBorder(null));
+        add(jLabel1);
+        jLabel1.setBounds(50, 170, 320, 300);
+
+        Sig.setText("Sig.");
+        Sig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SigActionPerformed(evt);
+            }
+        });
+        add(Sig);
+        Sig.setBounds(260, 480, 70, 23);
+
+        jButton1.setText("Ant.");
+        jButton1.setToolTipText("");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1);
+        jButton1.setBounds(140, 480, 70, 23);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/Wood-Wallpaper.jpg"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 530));
+        add(jLabel2);
+        jLabel2.setBounds(0, 0, 590, 530);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    
-    
+    public void showMatriz(int[][] matriz) {
+
+        String fullPath = "";
+        int num = 0;
+        ImageIcon icon = null;
+
+        myArrayBtn();
+        int head = 0;
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                num = matriz[i][j];
+                fullPath = "./Img/" + num + ".PNG";
+                icon = new ImageIcon(getClass().getResource(fullPath));
+                listBtn.get(head).setIcon(icon);
+                head++;
+            }
+
+        }
+
+    }
+
+    public void myArrayBtn() {
+        listBtn.add(btn1);
+        listBtn.add(btn2);
+        listBtn.add(btn3);
+        listBtn.add(btn4);
+        listBtn.add(btn5);
+        listBtn.add(btn6);
+        listBtn.add(btn7);
+        listBtn.add(btn8);
+        listBtn.add(btn9);
+        listBtn.add(btn10);
+        listBtn.add(btn11);
+        listBtn.add(btn12);
+        listBtn.add(btn13);
+        listBtn.add(btn14);
+        listBtn.add(btn15);
+        listBtn.add(btn16);
+    }
+
+    public void animationPuzzle(ArrayList<int[][]> answUser, boolean option) {
+
+        if (option) {
+
+            if (nextMatriz+1 <= answUser.size()) {//<<<<<<<<<<<<<---------------------
+                nextMatriz++;
+            }
+
+        } else {
+
+            if (nextMatriz >= 0) { //<<<<<<<<<<<<<<<<<----------------------------------
+                nextMatriz--;
+            }
+
+        }
+
+        showMatriz(answUser.get(nextMatriz));
+
+    }
+
     /**
      * Exit the Application
      */
@@ -356,9 +495,17 @@ public class UserGUI extends java.awt.Frame {
     }//GEN-LAST:event_btn16ActionPerformed
 
     private void btnSolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolveActionPerformed
-        
-                
+
+
     }//GEN-LAST:event_btnSolveActionPerformed
+
+    private void SigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SigActionPerformed
+        animationPuzzle(listOK, true);
+    }//GEN-LAST:event_SigActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        animationPuzzle(listOK, false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,6 +520,7 @@ public class UserGUI extends java.awt.Frame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Sig;
     private javax.swing.JButton btn1;
     private javax.swing.JButton btn10;
     private javax.swing.JButton btn11;
@@ -391,6 +539,7 @@ public class UserGUI extends java.awt.Frame {
     private javax.swing.JButton btn9;
     private javax.swing.JButton btnAlter;
     private javax.swing.JButton btnSolve;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
