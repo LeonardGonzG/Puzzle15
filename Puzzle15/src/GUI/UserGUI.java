@@ -13,6 +13,8 @@ import javax.swing.ImageIcon;
  */
 public class UserGUI extends java.awt.Frame {
     
+    
+    
     public boolean ShowMatriz(int[][] matriz){
         
         
@@ -273,6 +275,10 @@ public class UserGUI extends java.awt.Frame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
+    
     /**
      * Exit the Application
      */
@@ -326,7 +332,7 @@ public class UserGUI extends java.awt.Frame {
 
     private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
         // TODO add your handling code here:
-        btn12.setPressedIcon (new ImageIcon("0.PNG"));;
+        //btn12.setPressedIcon (new ImageIcon("0.PNG"));;
     }//GEN-LAST:event_btn12ActionPerformed
 
     private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
