@@ -26,6 +26,9 @@ public class IntelligentSystem {
         frontier.add(iniNode);
 
         while (!frontier.isEmpty()) {
+
+            System.out.println("Frontier size: " + frontier.size());
+
             frontier = MethodBubbleOrder(frontier);
             curNode = frontier.remove(0);
             if (equalsData(curNode.getData(), finalNode.getData())) {
@@ -33,16 +36,18 @@ public class IntelligentSystem {
             }
             visited.add(curNode);
 
+            System.out.println("Visisted size: " + visited.size());
+
             curNode.addChildren(actionPuzzle.childParent(curNode), finalState);
             children = curNode.getChildren();
 
             for (Node node : children) {
 
                 if (exist(frontier, node)) {
-                    
+
                     frontier.clear();
                     frontier = costPathNodes(curNode, frontier);
-                    
+
                 } else {
                     frontier.add(node);
                 }
@@ -90,33 +95,32 @@ public class IntelligentSystem {
     }
 
     public boolean exist(List<Node> list, Node curNode) {
-        
-        for(Node node : list){
-            if(equalsData(node.getData(), curNode.getData())){
+
+        for (Node node : list) {
+            if (equalsData(node.getData(), curNode.getData())) {
                 return true;
             }
 
         }
-        
+
         return false;
     }
-    
-    public List<Node> costPathNodes(Node curNode, List<Node> frontierList){
-    
-    
-         for(Node node : frontierList){
-             
-             if(curNode.getCosthPath()> node.getCosthPath()){
-                 frontierList.clear();
-                 frontierList.add(curNode);
-             
-                 return frontierList;
-             }
-             
-         }
-         
-         return frontierList;
-    
+
+    public List<Node> costPathNodes(Node curNode, List<Node> frontierList) {
+
+        for (Node node : frontierList) {
+
+            if (curNode.getCosthPath() > node.getCosthPath()) {
+                frontierList.clear();
+                frontierList.add(curNode);
+
+                return frontierList;
+            }
+
+        }
+
+        return frontierList;
+
     }
-    
+
 }
