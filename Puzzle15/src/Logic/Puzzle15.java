@@ -14,9 +14,9 @@ public class Puzzle15 {
     public Puzzle15() {
     }
 
-    public ArrayList<int[][]> childParent(Node parent) {
+    public ArrayList<Node> childParent(Node parent) {
 
-        ArrayList<int[][]> child = new ArrayList();
+        ArrayList<Node> child = new ArrayList();
         showSpace(parent);
         int[][] copyParent = copyParent(parent.getData());
 
@@ -30,7 +30,7 @@ public class Puzzle15 {
 
             aux[spotA][spotB] = copyParent[spotA][col];
             aux[spotA][col] = 0;          
-            child.add(aux);
+            child.add(new Node(aux));
 
         }
 
@@ -40,7 +40,7 @@ public class Puzzle15 {
         if (spotB != 0) {
             aux[spotA][spotB] = copyParent[spotA][col];
             aux[spotA][col] = 0;
-            child.add(aux);
+            child.add(new Node(aux));
 
         }
 
@@ -50,7 +50,7 @@ public class Puzzle15 {
         if (spotA != 0) {
             aux[spotA][spotB] = copyParent[row][spotB];
             aux[row][spotB] = 0;
-            child.add(aux);
+            child.add(new Node(aux));
         }
 
         aux = copyParent(parent.getData());
@@ -59,7 +59,7 @@ public class Puzzle15 {
         if (spotA != 3) {
             aux[spotA][spotB] = copyParent[row][spotB];
             aux[row][spotB] = 0;
-            child.add(aux);
+            child.add(new Node(aux));
         }
 
         return child;
