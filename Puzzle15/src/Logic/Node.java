@@ -38,7 +38,7 @@ public class Node{
        
         getChildren().add(newNode);
     }
-    
+    //Número de posiciones correctas con base a la solución
     private int calculateCostPath(Node newNode, int[][] finalNode){
    
         int costPath = 0;

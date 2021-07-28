@@ -45,7 +45,6 @@ public class IntelligentSystem {
 
                 if (exist(frontier, node)) {
 
-                    frontier.clear();
                     frontier = costPathNodes(curNode, frontier);
 
                 } else {

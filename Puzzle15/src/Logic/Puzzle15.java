@@ -26,7 +26,7 @@ public class Puzzle15 {
 
         //Move right
         col = spotB + 1;
-        if (spotB != 3) {
+        if (spotB != (parent.getData()[0].length-1) ) {//3
 
             aux[spotA][spotB] = copyParent[spotA][col];
             aux[spotA][col] = 0;          
@@ -56,7 +56,7 @@ public class Puzzle15 {
         aux = copyParent(parent.getData());
         //Move down
         row = spotA + 1;
-        if (spotA != 3) {
+        if (spotA != (parent.getData()[0].length-1)) {//3
             aux[spotA][spotB] = copyParent[row][spotB];
             aux[row][spotB] = 0;
             child.add(new Node(aux));

@@ -15,39 +15,57 @@ public class TestUCS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         IntelligentSystem agend = new IntelligentSystem();
-        
-        int[][] initState ={
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 0, 15}
+
+         
+        int[][] initState = {
+            {1, 15, 8, 10},
+            {0, 3, 9, 14},
+            {4, 7, 12, 11},
+            {5, 2, 13, 0}
         };
         
-        int[][] finalState ={
+         int[][] finalState = {
             {1, 2, 3, 4},
             {5, 6, 7, 8},
             {9, 10, 11, 12},
             {13, 14, 15, 0}
         };
-        
+       
+       
+         /*
+        int[][] initState = {
+            {1, 0, 3},
+            {5, 2, 6},
+            {4, 7, 8}
+        };
+
+        int[][] finalState = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 0}
+        };*/
+
         System.out.println("Uniform Cost Search - UCS");
+
+        Node nodeSolved = agend.UniformCostSearch(initState, finalState);
+
+        if (nodeSolved != null) {
+            while (nodeSolved != null) {
+
+                showMatriz(nodeSolved.getData());
+                nodeSolved = nodeSolved.getParent();
+            }
+
+        }else{
         
-         Node nodeSolved = agend.UniformCostSearch(initState, finalState);
-         
-         while (nodeSolved != null) {
-             
-            showMatriz(nodeSolved.getData());
-            nodeSolved = nodeSolved.getParent();
-         }
-        
-     
-        
+            System.out.println("Falla! :(");
+        }
+
     }
-    
-    
-     private static void showMatriz(int[][] m) {
+
+    private static void showMatriz(int[][] m) {
 
         for (int i = 0; i < m.length; i++) {
             System.out.println("\n");
@@ -58,5 +76,5 @@ public class TestUCS {
         System.out.println("");
 
     }
-    
+
 }
