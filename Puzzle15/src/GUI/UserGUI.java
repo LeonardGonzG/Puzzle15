@@ -281,6 +281,11 @@ public class UserGUI extends java.awt.Frame {
         btn16.setBounds(280, 380, 70, 60);
 
         btnAlter.setText("ALTERNAR");
+        btnAlter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterActionPerformed(evt);
+            }
+        });
         add(btnAlter);
         btnAlter.setBounds(400, 170, 110, 60);
 
@@ -506,6 +511,11 @@ public class UserGUI extends java.awt.Frame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         animationPuzzle(listOK, false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterActionPerformed
+       PuzzleShuffle ps1 = new PuzzleShuffle();
+       showMatriz(ps1.RandomMatrix());
+    }//GEN-LAST:event_btnAlterActionPerformed
 
     /**
      * @param args the command line arguments

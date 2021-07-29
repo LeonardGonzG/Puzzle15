@@ -14,6 +14,11 @@ import java.util.Collections;
  */
 public class PuzzleShuffle {
 
+    
+    
+    public PuzzleShuffle() {
+    }
+
   
     public int[][] RandomMatrix (){
          ArrayList<Integer> blockNums = new ArrayList<>();
