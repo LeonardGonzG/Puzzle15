@@ -27,8 +27,7 @@ public class IntelligentSystem {
 
         while (!frontier.isEmpty()) {
 
-            System.out.println("Frontier size: " + frontier.size());
-
+           //  System.out.println("Frontier size: " + frontier.size());
             frontier = MethodBubbleOrder(frontier);
             curNode = frontier.remove(0);
             if (equalsData(curNode.getData(), finalNode.getData())) {
@@ -36,19 +35,21 @@ public class IntelligentSystem {
             }
             visited.add(curNode);
 
-            System.out.println("Visisted size: " + visited.size());
-
+          //   System.out.println("Visisted size: " + visited.size());
             curNode.addChildren(actionPuzzle.childParent(curNode), finalState);
             children = curNode.getChildren();
 
             for (Node node : children) {
 
-                if (exist(frontier, node)) {
+                if (!exist(visited, node)) {
 
-                    frontier = costPathNodes(curNode, frontier);
+                    if (exist(frontier, node)) {
 
-                } else {
-                    frontier.add(node);
+                        frontier = costPathNodes(node, frontier);
+
+                    } else {
+                        frontier.add(node);
+                    }
                 }
 
             }
@@ -66,7 +67,7 @@ public class IntelligentSystem {
         for (int i = 0; i < frontier.size() - 1; i++) {
             for (int j = 0; j < frontier.size() - i - 1; j++) {
 
-                if (frontier.get(j).getCosthPath() < frontier.get(j + 1).getCosthPath()) {
+                if (frontier.get(j).getCosthPath() > frontier.get(j + 1).getCosthPath()) {
 
                     aux = frontier.get(j);
                     frontier.set(j, frontier.get(j + 1));
@@ -106,10 +107,34 @@ public class IntelligentSystem {
     }
 
     public List<Node> costPathNodes(Node curNode, List<Node> frontierList) {
+    
+        boolean flat = false;
+    
+        for(int i=0; i< frontierList.size(); i++){
+        
+            if(curNode.getCosthPath() < frontierList.get(i).getCosthPath() && !flat){
+                
+                System.out.println("Cost Node: " +curNode.getCosthPath() + " Nodes: " + frontierList.get(i).getCosthPath());
+                frontierList.set(i, curNode);
+                flat=true;
+            }
+            
+            if (curNode.getCosthPath() < frontierList.get(i).getCosthPath() &&flat){
+                frontierList.remove(i);
+            }
+        }
+    
+         return frontierList;
+    
+    }
+    /*
+    public List<Node> costPathNodes(Node curNode, List<Node> frontierList) {
 
         for (Node node : frontierList) {
 
-            if (curNode.getCosthPath() > node.getCosthPath()) {
+            if (curNode.getCosthPath() < node.getCosthPath()) {
+               
+                System.out.println("Costh CurNode: " + curNode.getCosthPath() + "other node: "+node.getCosthPath());
                 frontierList.clear();
                 frontierList.add(curNode);
 
@@ -117,9 +142,8 @@ public class IntelligentSystem {
             }
 
         }
-
         return frontierList;
 
-    }
+    }*/
 
 }

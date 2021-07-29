@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author leogonz.gut
  */
-public class test {
+public class TestMatriz {
 
     /**
      * @param args the command line arguments
