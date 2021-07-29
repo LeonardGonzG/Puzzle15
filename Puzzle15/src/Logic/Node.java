@@ -40,7 +40,7 @@ public class Node {
 
         getChildren().add(newNode);
     }
-
+        //distance Manhattan
     public int calculateCostPath(Node newNode, int[][] finalNode) {
 
         Point A = new Point();
@@ -55,6 +55,7 @@ public class Node {
                 B = searchPoint(finalNode, newNode._data[i][j]);
                 
                 costPath+= distanceManhattan(A,B);
+                //costPath+= distanceEuclidean(A,B);
             }
         }
 
@@ -66,6 +67,15 @@ public class Node {
 
         return (int) (Math.abs(A.getX() - B.getX()) + Math.abs(A.getY() - B.getY()));
     }
+    /*
+    public int distanceEuclidean(Point A, Point B){
+        
+        int X = (int) Math.pow((int) Math.round(A.getX() - B.getX()), 2);
+        int Y = (int) Math.pow((int) Math.round(A.getY() - B.getY()), 2);
+        
+        return (int) Math.pow((X+Y), 0.5);
+    }*/
+    
 
     public Point searchPoint(int[][] node, int number) {
 
@@ -107,7 +117,7 @@ public class Node {
     }
     
     /*
-    //Número de posiciones correctas con base a la solución
+    //Número de posiciones correctas con base a la solución - Hamming
     private int calculateCostPath(Node newNode, int[][] finalNode){
    
         int costPath = 0;

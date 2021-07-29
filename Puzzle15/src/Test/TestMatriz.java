@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logic;
+package Test;
 
+import Logic.IntelligentSystem;
+import Logic.Node;
 import java.util.ArrayList;
 import java.util.List;
 
