@@ -410,7 +410,7 @@ public class UserGUI extends java.awt.Frame {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) {
                 num = matriz[i][j];
-                AlteredList [i][j]= num;
+                //AlteredList [i][j]= num;
                 fullPath = "./Img/" + num + ".PNG";
                 icon = new ImageIcon(getClass().getResource(fullPath));
                 listBtn.get(head).setIcon(icon);
@@ -531,8 +531,7 @@ public class UserGUI extends java.awt.Frame {
     }//GEN-LAST:event_btn15ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-       InitialDataState(NormalList);
-       listOK = intelSys.showPath(NormalList, AlteredList);
+       
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
@@ -540,9 +539,9 @@ public class UserGUI extends java.awt.Frame {
     }//GEN-LAST:event_btn16ActionPerformed
 
     private void btnSolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolveActionPerformed
-       
+       InitialDataState(NormalList);
+       listOK = intelSys.showPath(AlteredList, NormalList);
        //showMatriz();
-       
         //mmeterla dentro del show path devuelve un arraylist
         //arraylist a listOK se le pasa a la solucion 
 
@@ -557,8 +556,9 @@ public class UserGUI extends java.awt.Frame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterActionPerformed
-       showMatriz(initialstate.RandomMatrix());
-     
+       
+       AlteredList=(initialstate.RandomMatrix());
+       showMatriz(AlteredList);
     }//GEN-LAST:event_btnAlterActionPerformed
 
     /**
