@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Logic.IntelligentSystem;
 import java.awt.Button;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -23,15 +24,46 @@ public class UserGUI extends java.awt.Frame {
      */
     ArrayList<JButton> listBtn = new ArrayList<>();
     int nextMatriz = 0;
-
+    
+    
     ArrayList<int[][]> listOK = new ArrayList<>();
-
+    int[][] NormalList = new int[4][4];
+    int[][] AlteredList = new int[4][4];
+    
+    
+    
+    PuzzleShuffle initialstate = new PuzzleShuffle();
+    IntelligentSystem intelSys = new IntelligentSystem();
+    
+    
+   
+    
+    public void InitialDataState(int[][] myarray){
+        
+                int cont = 0;
+                for(int i=0;i<4;i++){
+                    for(int j=0;j<4;j++){
+                        myarray[i][j]=(cont);
+                        cont+=1;
+                    }
+                }
+       
+    }
+    
+    
+    
+    
     public UserGUI() {
         initComponents();
-        //this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
+        
 
-        this.setSize(590, 530);
-
+        this.setSize(690, 530);
+        
+       
+        
+        
+/**
         int[][] test1 = {
             {0, 15, 14, 13},
             {12, 11, 10, 9},
@@ -39,6 +71,7 @@ public class UserGUI extends java.awt.Frame {
             {4, 3, 2, 1}
 
         };
+        
 
         int[][] test2 = {
             {15, 0, 14, 13},
@@ -59,8 +92,11 @@ public class UserGUI extends java.awt.Frame {
         listOK.add(test1);
         listOK.add(test2);
         listOK.add(test3);
+        
+        */
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -287,7 +323,7 @@ public class UserGUI extends java.awt.Frame {
             }
         });
         add(btnAlter);
-        btnAlter.setBounds(400, 170, 110, 60);
+        btnAlter.setBounds(410, 170, 110, 60);
 
         btnSolve.setText("RESOLVER");
         btnSolve.addActionListener(new java.awt.event.ActionListener() {
@@ -296,7 +332,7 @@ public class UserGUI extends java.awt.Frame {
             }
         });
         add(btnSolve);
-        btnSolve.setBounds(400, 240, 110, 60);
+        btnSolve.setBounds(530, 170, 110, 60);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -315,7 +351,7 @@ public class UserGUI extends java.awt.Frame {
         jLabel7.setText("Información");
         jLabel7.setToolTipText("");
         add(jLabel7);
-        jLabel7.setBounds(400, 320, 110, 17);
+        jLabel7.setBounds(410, 240, 110, 17);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,7 +359,7 @@ public class UserGUI extends java.awt.Frame {
             }
         });
         add(jTextField1);
-        jTextField1.setBounds(390, 340, 150, 130);
+        jTextField1.setBounds(400, 270, 250, 200);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/monitorias.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -357,7 +393,7 @@ public class UserGUI extends java.awt.Frame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Img/Wood-Wallpaper.jpg"))); // NOI18N
         add(jLabel2);
-        jLabel2.setBounds(0, 0, 590, 530);
+        jLabel2.setBounds(0, 0, 690, 560);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -374,6 +410,7 @@ public class UserGUI extends java.awt.Frame {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) {
                 num = matriz[i][j];
+                AlteredList [i][j]= num;
                 fullPath = "./Img/" + num + ".PNG";
                 icon = new ImageIcon(getClass().getResource(fullPath));
                 listBtn.get(head).setIcon(icon);
@@ -422,6 +459,8 @@ public class UserGUI extends java.awt.Frame {
         showMatriz(answUser.get(nextMatriz));
 
     }
+    
+    
 
     /**
      * Exit the Application
@@ -492,7 +531,8 @@ public class UserGUI extends java.awt.Frame {
     }//GEN-LAST:event_btn15ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+       InitialDataState(NormalList);
+       listOK = intelSys.showPath(NormalList, AlteredList);
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
@@ -500,7 +540,11 @@ public class UserGUI extends java.awt.Frame {
     }//GEN-LAST:event_btn16ActionPerformed
 
     private void btnSolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolveActionPerformed
-
+       
+       //showMatriz();
+       
+        //mmeterla dentro del show path devuelve un arraylist
+        //arraylist a listOK se le pasa a la solucion 
 
     }//GEN-LAST:event_btnSolveActionPerformed
 
@@ -513,8 +557,8 @@ public class UserGUI extends java.awt.Frame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterActionPerformed
-       PuzzleShuffle ps1 = new PuzzleShuffle();
-       showMatriz(ps1.RandomMatrix());
+       showMatriz(initialstate.RandomMatrix());
+     
     }//GEN-LAST:event_btnAlterActionPerformed
 
     /**
