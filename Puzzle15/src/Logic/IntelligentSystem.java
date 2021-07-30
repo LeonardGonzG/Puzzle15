@@ -35,6 +35,7 @@ public class IntelligentSystem {
         } else {
 
             System.out.println("Falla! :(");
+            return null;
         }
 
         return this.getPath();
@@ -64,6 +65,13 @@ public class IntelligentSystem {
             visited.add(curNode);
 
             System.out.println("Visisted size: " + visited.size());
+            
+            if(visited.size() > 10000){
+                return null;
+            
+            }
+            
+            
             curNode.addChildren(actionPuzzle.childParent(curNode), finalState);
             children = curNode.getChildren();
 
