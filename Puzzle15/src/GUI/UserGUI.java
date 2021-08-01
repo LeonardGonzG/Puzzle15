@@ -526,16 +526,16 @@ public class UserGUI extends java.awt.Frame {
     public String showMatricesConsole(ArrayList<int[][]> ans) {
 
         String ansT = "";
-/*
+        /*
         for (int[][] a : ans) {
             ansT += showMatrizConsole(a);
         }
-        */
-       for(int i =ans.size()-1; i>=0; i--){
-            
-           ansT += showMatrizConsole(ans.get(i));
-       
-       }
+         */
+        for (int i = ans.size() - 1; i >= 0; i--) {
+
+            ansT += showMatrizConsole(ans.get(i));
+
+        }
 
         return ansT;
 
@@ -617,20 +617,17 @@ public class UserGUI extends java.awt.Frame {
 
         //this.messageUser.setText("Buscando solución...");  
         //  String ansEnd = showMatrizConsole(this.AlteredList);
-        try{
-        this.listOK.clear();
-
-        this.listOK = this.intelSys.showPath(AlteredList, NormalList);
+        this.listOK = this.intelSys.showPath(this.AlteredList, this.NormalList);
 
         if (this.listOK != null) {
             JOptionPane.showMessageDialog(null, "Solución encontrada :) ", "UCS", 1);
 
-            String msgHead = "PASOS: " + (this.listOK.size()-1) + "\n";
+            String msgHead = "PASOS: " + (this.intelSys.getSteps() - 1) + "\n";
 
             String ansEnd = showMatricesConsole(this.listOK) + "\n";
 
             this.messageUser.setText(msgHead + ansEnd);
-            this.nextMatriz = listOK.size();
+            this.nextMatriz = this.intelSys.getSteps();
 
         } else {
             JOptionPane.showMessageDialog(null, "Encontrar la solución tarda mucho :( ", "Advertencia", 0);
@@ -638,9 +635,10 @@ public class UserGUI extends java.awt.Frame {
             this.nextMatriz = 0;
         }
 
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Falla el sistema", "Advertencia", 0);
+        if (this.listOK != null) {
+            this.listOK.clear();
         }
+
 
     }//GEN-LAST:event_btnSolveActionPerformed
 
@@ -653,30 +651,30 @@ public class UserGUI extends java.awt.Frame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterActionPerformed
-        InitialDataState(NormalList);
-        this.AlteredList = (initialstate.RandomMatrix());
+
+        InitialDataState(this.NormalList);
+        this.AlteredList = (this.initialstate.RandomMatrix());
         showMatriz(this.AlteredList);
     }//GEN-LAST:event_btnAlterActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 
-        this.AlteredList = m01;
-        showMatriz(m01);
+        this.AlteredList = this.m01;
+        showMatriz(this.m01);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
 
-        this.AlteredList = m02;
-        showMatriz(m02);
+        this.AlteredList = this.m02;
+        showMatriz(this.m02);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-
-        this.AlteredList = m03;
-        showMatriz(m03);
+        this.AlteredList = this.m03;
+        showMatriz(this.m03);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

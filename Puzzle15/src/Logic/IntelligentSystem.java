@@ -9,32 +9,30 @@ import java.util.List;
  */
 public class IntelligentSystem {
 
-    
     private int steps = 0;
     private ArrayList<int[][]> path = new ArrayList<>();
-    private Node nodeSolved  = null;        
-    
+    private Node nodeSolved = null;
+
     public IntelligentSystem() {
 
     }
 
     public ArrayList<int[][]> showPath(int[][] initState, int[][] finalState) {
-       
+
         this.nodeSolved = UniformCostSearch(initState, finalState);
 
-        int cont = 0;
-        
         if (getNodeSolved() != null) {
             while (getNodeSolved() != null) {
 
-                this.steps++;
-                getPath().add(this.getNodeSolved().getData());
+               this.path.add(this.getNodeSolved().getData());
                 this.nodeSolved = this.getNodeSolved().getParent();
             }
+            this.steps = this.path.size();
 
         } else {
 
             System.out.println("Falla! :(");
+            this.steps = 0;
             return null;
         }
 
@@ -65,13 +63,12 @@ public class IntelligentSystem {
             visited.add(curNode);
 
             System.out.println("Visisted size: " + visited.size());
-            
-            if(visited.size() > 10000){
+
+            if (visited.size() > 10000) {
                 return null;
-            
+
             }
-            
-            
+
             curNode.addChildren(actionPuzzle.childParent(curNode), finalState);
             children = curNode.getChildren();
 
@@ -163,6 +160,7 @@ public class IntelligentSystem {
         return frontierList;
 
     }
+
     /*
     public List<Node> costPathNodes(Node curNode, List<Node> frontierList) {
 
@@ -181,7 +179,6 @@ public class IntelligentSystem {
         return frontierList;
 
     }*/
-
     /**
      * @return the steps
      */
@@ -202,7 +199,5 @@ public class IntelligentSystem {
     public Node getNodeSolved() {
         return nodeSolved;
     }
-    
-    
 
 }
