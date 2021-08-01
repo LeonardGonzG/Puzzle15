@@ -6,7 +6,6 @@
 package GUI;
 
 import Logic.IntelligentSystem;
-import java.awt.Cursor;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,6 +34,8 @@ public class UserGUI extends java.awt.Frame {
 
     PuzzleShuffle initialstate = new PuzzleShuffle();
     IntelligentSystem intelSys = new IntelligentSystem();
+
+    int optionM = 0;
 
     //1 - simple
     private int[][] m01 = {
@@ -308,6 +309,7 @@ public class UserGUI extends java.awt.Frame {
 
         btnAlter.setBackground(new java.awt.Color(51, 204, 255));
         btnAlter.setText("Random");
+        btnAlter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAlter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterActionPerformed(evt);
@@ -318,6 +320,7 @@ public class UserGUI extends java.awt.Frame {
 
         btnSolve.setBackground(new java.awt.Color(102, 255, 102));
         btnSolve.setText("Resolver UCS");
+        btnSolve.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSolve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSolveActionPerformed(evt);
@@ -357,6 +360,7 @@ public class UserGUI extends java.awt.Frame {
         jLabel1.setBounds(50, 170, 320, 300);
 
         Sig.setText("Sig.");
+        Sig.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Sig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SigActionPerformed(evt);
@@ -367,6 +371,7 @@ public class UserGUI extends java.awt.Frame {
 
         jButton1.setText("Ant.");
         jButton1.setToolTipText("");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -388,6 +393,7 @@ public class UserGUI extends java.awt.Frame {
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(153, 255, 153));
         jButton2.setText("1");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -400,6 +406,7 @@ public class UserGUI extends java.awt.Frame {
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(153, 255, 153));
         jButton3.setText("2");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -412,6 +419,7 @@ public class UserGUI extends java.awt.Frame {
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(153, 255, 153));
         jButton4.setText("3");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -454,7 +462,7 @@ public class UserGUI extends java.awt.Frame {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) {
                 num = matriz[i][j];
-                //AlteredList [i][j]= num;
+     
                 fullPath = "./Img/" + num + ".PNG";
                 icon = new ImageIcon(getClass().getResource(fullPath));
                 listBtn.get(head).setIcon(icon);
@@ -514,7 +522,7 @@ public class UserGUI extends java.awt.Frame {
             listM += "\n";
 
             for (int j = 0; j < m[0].length; j++) {
-                // listM +=   m[i][j]+"\t";
+      
                 listM += " " + m[i][j] + " ";
             }
         }
@@ -526,11 +534,7 @@ public class UserGUI extends java.awt.Frame {
     public String showMatricesConsole(ArrayList<int[][]> ans) {
 
         String ansT = "";
-        /*
-        for (int[][] a : ans) {
-            ansT += showMatrizConsole(a);
-        }
-         */
+
         for (int i = ans.size() - 1; i >= 0; i--) {
 
             ansT += showMatrizConsole(ans.get(i));
@@ -538,6 +542,20 @@ public class UserGUI extends java.awt.Frame {
         }
 
         return ansT;
+
+    }
+
+    public int[][] copyMatriz(int[][] A, int[][] B) {
+
+        for (int i = 0; i < A.length; i++) {
+
+            for (int j = 0; j < A[0].length; j++) {
+
+                B[i][j] = A[i][j];
+            }
+        }
+
+        return B;
 
     }
 
@@ -615,16 +633,43 @@ public class UserGUI extends java.awt.Frame {
 
     private void btnSolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolveActionPerformed
 
-        //this.messageUser.setText("Buscando solución...");  
-        //  String ansEnd = showMatrizConsole(this.AlteredList);
-        this.listOK = this.intelSys.showPath(this.AlteredList, this.NormalList);
+        if (this.listOK != null) {
+            this.listOK.clear();
+        }
+
+        this.intelSys = new IntelligentSystem();
+
+        switch (this.optionM) {
+
+            case 0:
+                
+                this.listOK = this.intelSys.showPath(this.AlteredList, this.NormalList);
+
+                break;
+
+            case 1:
+                this.listOK = this.intelSys.showPath(this.m01, this.NormalList);
+
+                break;
+
+            case 2:
+                this.listOK = this.intelSys.showPath(this.m02, this.NormalList);
+
+                break;
+            case 3:
+                this.listOK = this.intelSys.showPath(this.m03, this.NormalList);
+                break;
+
+            default:
+                break;
+        }
 
         if (this.listOK != null) {
             JOptionPane.showMessageDialog(null, "Solución encontrada :) ", "UCS", 1);
 
             String msgHead = "PASOS: " + (this.intelSys.getSteps() - 1) + "\n";
 
-            String ansEnd = showMatricesConsole(this.listOK) + "\n";
+            String ansEnd = showMatricesConsole((ArrayList<int[][]>) this.listOK.clone()) + "\n";
 
             this.messageUser.setText(msgHead + ansEnd);
             this.nextMatriz = this.intelSys.getSteps();
@@ -633,10 +678,6 @@ public class UserGUI extends java.awt.Frame {
             JOptionPane.showMessageDialog(null, "Encontrar la solución tarda mucho :( ", "Advertencia", 0);
             this.messageUser.setText("Buscar la respuesta tarda mucho :/");
             this.nextMatriz = 0;
-        }
-
-        if (this.listOK != null) {
-            this.listOK.clear();
         }
 
 
@@ -652,28 +693,27 @@ public class UserGUI extends java.awt.Frame {
 
     private void btnAlterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterActionPerformed
 
+        this.optionM = 0;
         InitialDataState(this.NormalList);
         this.AlteredList = (this.initialstate.RandomMatrix());
         showMatriz(this.AlteredList);
     }//GEN-LAST:event_btnAlterActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
 
-        this.AlteredList = this.m01;
+        this.optionM = 1;
         showMatriz(this.m01);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
 
-        this.AlteredList = this.m02;
+        this.optionM = 2;
         showMatriz(this.m02);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        this.AlteredList = this.m03;
+
+        this.optionM = 3;
         showMatriz(this.m03);
     }//GEN-LAST:event_jButton4ActionPerformed
 

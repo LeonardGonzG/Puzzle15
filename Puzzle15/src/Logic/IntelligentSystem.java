@@ -14,6 +14,7 @@ public class IntelligentSystem {
     private Node nodeSolved = null;
 
     public IntelligentSystem() {
+        nodeSolved=null;
 
     }
 
@@ -21,8 +22,8 @@ public class IntelligentSystem {
 
         this.nodeSolved = UniformCostSearch(initState, finalState);
 
-        if (getNodeSolved() != null) {
-            while (getNodeSolved() != null) {
+        if (this.getNodeSolved() != null) {
+            while (this.getNodeSolved() != null) {
 
                this.path.add(this.getNodeSolved().getData());
                 this.nodeSolved = this.getNodeSolved().getParent();
