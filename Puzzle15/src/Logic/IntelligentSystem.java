@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author leogonz.gut
+ * @author David Clavijo - leongonz.gut
  */
 public class IntelligentSystem {
 

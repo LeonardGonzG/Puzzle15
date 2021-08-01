@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author David Clavijo
+ * @author David Clavijo - leongonz.gut
  */
 public class UserGUI extends java.awt.Frame {
 
@@ -625,7 +625,7 @@ public class UserGUI extends java.awt.Frame {
         if (this.listOK != null) {
             JOptionPane.showMessageDialog(null, "Solución encontrada :) ", "UCS", 1);
 
-            String msgHead = "PASOS: " + this.listOK.size() + "\n";
+            String msgHead = "PASOS: " + (this.listOK.size()-1) + "\n";
 
             String ansEnd = showMatricesConsole(this.listOK) + "\n";
 
